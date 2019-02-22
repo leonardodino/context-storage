@@ -4,26 +4,27 @@
 [![gzip size][gzip-badge]][gzip-url]
 [![Build Status][travis-badge]][travis-url]
 [![Code Coverage][codecov-badge]][codecov-url]
+[![MIT Licensed][license-badge]][license-url]
 
-react [hook][react-hooks] for sharing localStorage via context.
+> React [hook][react-hooks] for sharing localStorage via context.
 
 values are automatically converted to and from JSON.
 
 ## Install
 
-```shell
+```bash
 $ npm install --save context-storage
 ```
 
 or
 
-```shell
+```bash
 $ yarn add context-storage
 ```
 
 **requires**: any version of react with hooks. (`react >= 16.8.0`)
 
-## Basic Usage
+## Usage
 
 ```javascript
 import React from 'react'
@@ -36,7 +37,7 @@ const Title = () => <h1>Hello {useStorage()[0]}!</h1>
 const UserNameInput = () => {
   const [name, setName] = useStorage()
   const handleChange = ({ target }) => setName(target.value)
-  return <input value={name} onChange={handleChange} />
+  return <input value={name || ''} onChange={handleChange} />
 }
 
 export const App = () => (
@@ -51,14 +52,14 @@ export const App = () => (
 
 > **key** is the only required argument.
 
-| **name**     | type               | description                            |
-| ------------ | ------------------ | -------------------------------------- |
-| **key**      | `string`           | which key in localStorage to use       |
-| **fallback** | `any`              | fallback when localStorage is empty    |
-| **replacer** | `function | array` | [passed to `JSON.stringify`][replacer] |
-| **reviver**  | `function`         | [passed to `JSON.parse`][reviver]      |
+| **name**     | type              | description                            |
+| ------------ | ----------------- | -------------------------------------- |
+| **key**      | `string`          | which key in localStorage to use       |
+| **fallback** | `any`             | fallback when localStorage is empty    |
+| **replacer** | `function︱array` | [passed to `JSON.stringify`][replacer] |
+| **reviver**  | `function`        | [passed to `JSON.parse`][reviver]      |
 
-## Implementation details
+## Implementation
 
 the value will always be encoded as JSON when saving to `localStorage`.
 and decoded when read back.
@@ -80,8 +81,10 @@ without custom replacer/reviver:
 [gzip-url]: https://unpkg.com/context-storage/dist/index.js
 [travis-badge]: https://travis-ci.com/leonardodino/context-storage.svg?branch=master
 [travis-url]: https://travis-ci.com/leonardodino/context-storage
-[codecov-badge]: https://codecov.io/gh/leonardodino/context-storage/branch/master/graph/badge.svg
+[codecov-badge]: https://badgen.net/codecov/c/github/leonardodino/context-storage
 [codecov-url]: https://codecov.io/gh/leonardodino/context-storage
+[license-badge]: https://badgen.net/github/license/leonardodino/context-storage
+[license-url]: https://github.com/leonardodino/context-storage/blob/master/LICENSE
 [react-hooks]: https://reactjs.org/docs/hooks-intro.html
 [json]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
 [replacer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter
