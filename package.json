@@ -1,0 +1,65 @@
+{
+  "name": "context-storage",
+  "version": "0.0.0-alpha",
+  "description": "react hook for localstorage",
+  "source": "src/index.tsx",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "umd:main": "dist/index.umd.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/leonardodino/context-storage",
+  "author": "Leonardo Dino",
+  "license": "MIT",
+  "scripts": {
+    "build": "microbundle --name createContext",
+    "postbuild": "bundlesize",
+    "dev": "jest --watch",
+    "test": "jest"
+  },
+  "keywords": [
+    "react",
+    "react-hooks",
+    "hooks",
+    "localstorage",
+    "browser"
+  ],
+  "bundlesize": [
+    {
+      "path": "./dist/*.{js,mjs}",
+      "maxSize": "600B"
+    }
+  ],
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "preset": "jest-preset-typescript",
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.6",
+    "@types/react": "^16.8.4",
+    "@types/react-dom": "^16.8.2",
+    "bundlesize": "^0.17.1",
+    "jest": "^24.1.0",
+    "jest-localstorage-mock": "^2.4.0",
+    "jest-preset-typescript": "^1.2.0",
+    "microbundle": "^0.9.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-testing-library": "^5.9.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3"
+  }
+}
