@@ -6,3 +6,4 @@ script:
   - yarn test
   - npx codecov@2
   - yarn build
+  - yarn type-check

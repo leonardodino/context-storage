@@ -13,8 +13,12 @@
   "scripts": {
     "build": "microbundle --name createContext",
     "postbuild": "bundlesize",
-    "dev": "jest --watch",
-    "test": "jest"
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch --preserveWatchOutput",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "prepublishOnly": "yarn test && yarn type-check && yarn build",
+    "dev": "concurrently -kn 'jest,type' -c 'bgGreen,bgCyan' 'yarn test:watch' 'yarn type-check:watch'"
   },
   "keywords": [
     "react",
@@ -47,9 +51,9 @@
   "devDependencies": {
     "@testing-library/react": "^8.0.1",
     "@types/jest": "^24.0.13",
-    "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "bundlesize": "^0.17.2",
+    "concurrently": "^4.1.0",
     "jest": "^24.8.0",
     "jest-localstorage-mock": "^2.4.0",
     "jest-preset-typescript": "^1.2.0",
