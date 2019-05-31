@@ -6,13 +6,22 @@ type StateHook<V> = () => [V | undefined, (v: V) => void]
 /* prettier-ignore */
 const noop = () => {/* noop */}
 
+const hasStorage = typeof localStorage !== 'undefined'
+const defaultStorage = {
+  getItem: (key: string) => (hasStorage ? localStorage.getItem(key) : null),
+  setItem: (key: string, value: string) => {
+    if (hasStorage) localStorage.setItem(key, value)
+  },
+}
+
 export default function createStorage<V>(
   key: string,
   fallbackValue?: V,
   parse?: () => any,
   stringify?: () => any,
+  storage: typeof defaultStorage = defaultStorage,
 ): [React.FunctionComponent, StateHook<V>] {
-  const storedValue: V = JSON.parse(localStorage.getItem(key) || 'null', parse)
+  const storedValue: V = JSON.parse(storage.getItem(key) || 'null', parse)
   const initialValue = storedValue != null ? storedValue : fallbackValue
 
   const ValueContext = createContext(initialValue)
@@ -26,7 +35,7 @@ export default function createStorage<V>(
     const [value, setValue] = useState(initialValue)
 
     useEffect(() => {
-      localStorage.setItem(key, JSON.stringify(value, stringify))
+      storage.setItem(key, JSON.stringify(value, stringify))
     }, [value])
 
     return (
