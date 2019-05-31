@@ -4,5 +4,5 @@ notifications: { email: false }
 cache: yarn
 script:
   - yarn test
-  - yarn build
   - npx codecov@2
+  - yarn build

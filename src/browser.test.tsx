@@ -1,6 +1,6 @@
 import 'jest-localstorage-mock'
 import React from 'react'
-import { render, act, cleanup } from 'react-testing-library'
+import { render, act, cleanup } from '@testing-library/react'
 import createStorage from '.'
 
 beforeAll(cleanup)
