@@ -1,6 +1,6 @@
 {
   "name": "context-storage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "react hook for localstorage",
   "source": "src/index.tsx",
   "main": "dist/index.js",
