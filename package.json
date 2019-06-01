@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "build": "microbundle --name createContext",
-    "postbuild": "bundlesize",
+    "postbuild": "rm dist/*.test.* dist/*.mock.* && bundlesize",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch --preserveWatchOutput",
     "test": "jest",
@@ -20,6 +20,9 @@
     "prepublishOnly": "yarn test && yarn type-check && yarn build",
     "dev": "concurrently -kn 'jest,type' -c 'bgGreen,bgCyan' 'yarn test:watch' 'yarn type-check:watch'"
   },
+  "files": [
+    "dist/"
+  ],
   "keywords": [
     "react",
     "react-hooks",

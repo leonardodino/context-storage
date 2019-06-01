@@ -1,4 +1,4 @@
-import './jest-ssr-mock'
+import './jest-ssr.mock'
 import React from 'react'
 import { render, act, cleanup } from '@testing-library/react'
 import createStorage from '.'
